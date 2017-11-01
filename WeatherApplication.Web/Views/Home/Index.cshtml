@@ -1,0 +1,66 @@
+﻿<div class="jumbotron">
+    <h1>Weather Application</h1>
+    <!--<p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS, and JavaScript.</p>
+    <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>-->
+</div>
+<div class="row">
+    <!--<div class="col-md-4">
+        <h2>Getting started</h2>
+        <p>ASP.NET Web API is a framework that makes it easy to build HTTP services that reach
+        a broad range of clients, including browsers and mobile devices. ASP.NET Web API
+        is an ideal platform for building RESTful applications on the .NET Framework.</p>
+        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301870">Learn more &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>Get more libraries</h2>
+        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
+        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301871">Learn more &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>Web Hosting</h2>
+        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
+        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301872">Learn more &raquo;</a></p>
+    </div>-->
+    
+    <div class="col-md-4">
+        <h2>Country / City</h2>
+        <p>
+            <select id="countries"></select>
+        </p>
+        <p>
+            <select id="cities">
+                <option value="">SELECT CITY...</option>
+            </select>
+        </p>
+        <p>
+            <input type="button" id="getweather" value="GET" />
+        </p>
+    </div>
+    <div class="col-md-2"></div>
+    <div class="col-md-6">
+        <h2>Weather</h2>
+        <div id="weatherinfo">
+        </div>
+    </div>
+</div>
+@section scripts {
+    <script type="text/javascript" src="~/Scripts/jsrender.js"></script>
+    <script type="text/javascript" src="~/Scripts/app/Utils.js"></script>
+    <script type="text/javascript" src="~/Scripts/app/weatherapp.js"></script>
+
+    <script id="weatherinfotemplate" type="text/x-jsrender" data-template="weatherinfo">
+        <table class="weather-widget__items">
+            <tbody>
+                <tr class="weather-widget__item"><td>Location</td><td id="weather-widget-wind">{{:location}}</td></tr>
+                <tr class="weather-widget__item"><td>Time</td><td id="weather-widget-cloudiness">{{:time}}</td></tr>
+                <tr class="weather-widget__item"><td>Wind</td><td>{{:wind}}</td></tr>
+                <tr class="weather-widget__item"><td>Visibility</td><td>{{:visibility}}</td></tr>
+                <tr class="weather-widget__item"><td>Sky Conditions</td><td>{{:skyConditions}} </td></tr>
+                <tr class="weather-widget__item"><td>Temperature</td><td>{{:temperature}} </td></tr>
+                <tr class="weather-widget__item"><td>Dew Point</td><td>{{:dewPoint}}</td></tr>
+                <tr class="weather-widget__item"><td>Relative Humidity</td><td>{{:relativeHumidity}}</td></tr>
+                <tr class="weather-widget__item"><td>Pressure</td><td>{{:pressure}}</td></tr>
+            </tbody>
+        </table>
+    </script>
+}
