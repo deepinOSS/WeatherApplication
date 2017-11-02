@@ -1,0 +1,46 @@
+#$citydata=Get-Content -Raw -Path 'C:\Users\Pradeep\Downloads\city.list.json\city.list.json' | ConvertFrom-Json
+#$path = 'C:\Users\Pradeep\Downloads\city.list.json\city.list.insert.sql'
+
+$citydata=Get-Content -Raw -Path 'C:\Users\Pradeep\Downloads\city.list.json\country.list.json' | ConvertFrom-Json
+$path = 'C:\Users\Pradeep\Downloads\city.list.json\country.list.insert.sql'
+
+$mode = [System.IO.FileMode]::Append
+$access = [System.IO.FileAccess]::Write
+$sharing = [IO.FileShare]::Read
+
+# create the FileStream and StreamWriter objects
+$fs = New-Object IO.FileStream($path, $mode, $access, $sharing)
+$sw = New-Object System.IO.StreamWriter($fs)
+
+foreach($city in $citydata)
+{
+    #$ins = ("INSERT INTO city VALUES({0},'{1}','{2}','{3}','{4}')" -f $city.id,$city.name.Replace("'","''"),$city.country,$city.coord.lat,$city.coord.lon)
+    $ins = ("INSERT INTO Country VALUES('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}')" -f $city.name.Replace("'","''"),$city.alpha_2,$city.alpha_3,$city.country_code,$city.iso_3166_2.Replace("ISO 3166-2:",""),$city.region,$city.sub_region,$city.region_code,$city.sub_region_code)
+    #Write-Output $ins
+    #Write-Output $city.region_code,$city.sub_region_code
+    $sw.WriteLine($ins)
+}
+$sw.Flush()
+$sw.Close()
+
+/weather?cityid=
+/weather?city=&country=
+
+/weather/{cityid}
+/weather/{countryname}/{cityname}
+
+/countries
+
+TO Do
+WebAPI
+	implement global exception handling
+	implement DI
+Create a doc/presentation with
+	Application architecture
+	Primary concerns addressed
+	out of scope
+	points of extension
+	Could have implemented AutoMapper
+	source for countries - https://github.com/lukes/ISO-3166-Countries-with-Regional-Codes/tree/master/all
+	source for CityId -  http://bulk.openweathermap.org/sample/
+	
